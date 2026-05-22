@@ -5,19 +5,19 @@ class TaskList extends Component {
   tasks = [
     {
       id: 101,
-      text: "Створити адаптивний header для сайту"
+      text: "Скинуть дз 5,6,7"
     },
     {
       id: 102,
-      text: "Оптимізувати зображення для швидкого завантаження"
+      text: "Встать в 9 утра на урок"
     },
     {
       id: 103,
-      text: "Додати темну тему для інтерфейсу"
+      text: "послушать"
     },
     {
       id: 104,
-      text: "Підключити анімацію для кнопок"
+      text: "Покушать"
     }
   ];
 
@@ -31,7 +31,7 @@ class TaskList extends Component {
   render() {
     return (
       <div className="task-container">
-        <h1 className="title">Frontend Task Board</h1>
+        <h1 className="title">Список заданий на завтра</h1>
 
         {this.tasks.length === 0 ? (
           <p className="empty">Список завдань порожній</p>
