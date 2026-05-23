@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import "./TaskList.css";
 
 class TaskList extends Component {
@@ -21,10 +21,33 @@ class TaskList extends Component {
     }
   ];
 
+ 
+  inputRef = createRef();
+
+  addTask = () => {
+    const value = this.inputRef.current.value.trim();
+
+    if (value === "") return;
+
+    const newTask = {
+      id: Date.now(),
+      text: value
+    };
+
+    this.tasks.push(newTask);
+
+  
+    this.inputRef.current.value = "";
+
+
+    this.forceUpdate();
+  };
+
+
+
   deleteTask = (id) => {
     this.tasks = this.tasks.filter((task) => task.id !== id);
 
-    // Оновлення компонента без state
     this.forceUpdate();
   };
 
@@ -32,6 +55,20 @@ class TaskList extends Component {
     return (
       <div className="task-container">
         <h1 className="title">Список заданий на завтра</h1>
+
+  
+        <div className="add-task">
+          <input
+            type="text"
+            placeholder="Нове завдання..."
+            ref={this.inputRef}
+            className="task-input"
+          />
+
+          <button className="add-btn" onClick={this.addTask}>
+            Додати
+          </button>
+        </div>
 
         {this.tasks.length === 0 ? (
           <p className="empty">Список завдань порожній</p>
